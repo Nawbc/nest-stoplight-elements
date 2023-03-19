@@ -1,14 +1,25 @@
 {
-  "name": "@letscollab-nest/stoplight-elements",
-  "version": "0.0.1-alpha.1",
+  "name": "@letscollab/nest-stoplight-elements",
+  "version": "0.0.1-alpha.2",
   "description": "Stoplight elements for Nestjs",
   "author": "Han",
   "license": "Apache-2.0",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "repository": {
     "url": "https://github.com/Nawbc/nestjs-stoplight"
   },
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist",
+    "src",
+    "views"
+  ],
   "scripts": {
     "build": "nest build",
+    "prepublishOnly": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:dev": "nest start --watch",
