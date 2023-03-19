@@ -4,25 +4,27 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>{{data.title}}</title>
-  <script src="web-components.min.js"></script>
-  <link rel="stylesheet" href="styles.min.css">
+  <title>{{title}}</title>
+  <script src="{{#if stoplightJSUrl}}{{stoplightJSUrl}}{{else}}web-components.min.js{{/if}}" async ></script>
+  <link rel="shortcut icon" href="{{favicon}}" type="image/x-icon">
+  <link rel="stylesheet" href="{{#if stoplightCSSUrl}}{{stoplightCSSUrl}}{{else}}styles.min.css{{/if}}">
 </head>
 
-<body>
+<body style="height:100vh">
+  {{data.apiDescriptionDocument}}
   <elements-api
-    apiDescriptionDocument='{{data.document}}'
-    {{#if data.apiDescriptionDocument}}apiDescriptionDocument='{{data.apiDescriptionDocument}}'{{/if}}
-    {{#if data.basePath}}basePath='{{data.basePath}}'{{/if}}
-    {{#if data.hideInternal}}hideInternal='{{data.hideInternal}}'{{/if}}
-    {{#if data.hideTryIt}}hideTryIt='{{data.hideTryIt}}'{{/if}}
-    {{#if data.hideSchemas}}hideSchemas='{{data.hideSchemas}}'{{/if}}
-    {{#if data.hideExport}}hideExport='{{data.hideExport}}'{{/if}}
-    {{#if data.tryItCorsProxy}}tryItCorsProxy='{{data.tryItCorsProxy}}'{{/if}}
-    {{#if data.tryItCredentialPolicy}}tryItCredentialPolicy='{{data.tryItCredentialPolicy}}'{{/if}}
-    {{#if data.layout}}layout='{{data.layout}}'{{/if}}
-    {{#if data.logo}}logo='{{data.logo}}'{{/if}}
-    {{#if data.router}}router='{{data.router}}'{{/if}}
+    {{#if apiDescriptionDocument}}apiDescriptionDocument ='{{apiDescriptionDocument}}'{{/if}}
+    {{#if apiDescriptionUrl}}apiDescriptionUrl ='{{apiDescriptionUrl}}'{{/if}}
+    {{#if basePath}}basePath='{{basePath}}'{{/if}}
+    {{#if hideInternal}}hideInternal='{{hideInternal}}'{{/if}}
+    {{#if hideTryIt}}hideTryIt='{{hideTryIt}}'{{/if}}
+    {{#if hideSchemas}}hideSchemas='{{hideSchemas}}'{{/if}}
+    {{#if hideExport}}hideExport='{{hideExport}}'{{/if}}
+    {{#if tryItCorsProxy}}tryItCorsProxy='{{tryItCorsProxy}}'{{/if}}
+    {{#if tryItCredentialPolicy}}tryItCredentialPolicy='{{tryItCredentialPolicy}}'{{/if}}
+    {{#if layout}}layout='{{layout}}'{{/if}}
+    {{#if logo}}logo='{{logo}}'{{/if}}
+    {{#if router}}router='{{router}}'{{/if}}
   ></elements-api>
 </body>
 

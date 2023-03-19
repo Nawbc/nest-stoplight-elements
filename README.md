@@ -1,73 +1,58 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+<img width="800" src="https://user-images.githubusercontent.com/45007226/226185397-b8be4abb-18e9-450d-94cf-31f443091f0a.png"/>
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Note Bene
+Only support fastify;
+## Usage
 
-## Description
+```ts
+const app = await NestFactory.create<NestFastifyApplication>(
+  TestModule,
+  new FastifyAdapter(),
+);
+const options = new DocumentBuilder()
+  .setTitle('LetsCollab REST API')
+  .setDescription('Stoplight Elements Test API ')
+  .build();
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+const doc = SwaggerModule.createDocument(app, options, {
+  include: [TestModule],
+});
 
-## Installation
+await StoplightElementsModule.setup('/docs', app, doc, {
+  logo: 'https://user-images.githubusercontent.com/45007226/220814748-96ec88ec-673d-4d38-abae-dce7d7c6695f.png',
+});
 
-```bash
-$ yarn install
+app.listen(3000);
+
 ```
 
-## Running the app
 
-```bash
-# development
-$ yarn run start
+## Options
 
-# watch mode
-$ yarn run start:dev
-
-# production mode
-$ yarn run start:prod
+- favicon - Website favicon.
+- auth - Authorization handler
+```ts
+auth(req) {
+  return req['Authorization'];
+},
 ```
 
-## Test
 
-```bash
-# unit tests
-$ yarn run test
-
-# e2e tests
-$ yarn run test:e2e
-
-# test coverage
-$ yarn run test:cov
-```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+---
+- apiDescriptionUrl - OpenAPI document URL, supporting http://, https://, and - documents containing $ref to other http(s) documents.
+- apiDescriptionDocument - OpenAPI document, provided as YAML string, JSON string, or JavaScript object.
+- basePath - Helps when using router: 'history' but docs are in a subdirectory like https://example.com/docs/api.
+- hideInternal - Pass "true" to filter out any content which has been marked as internal with x-internal.
+- hideTryIt - Pass true to hide the Try It feature.
+- hideSchemas - Pass true to hide the schemas in the Table of Contents, when using the sidebar layout.
+- hideExport - Pass true to hide the Export button on overview section of the documentation.
+- tryItCorsProxy - Pass the URL of a CORS proxy used to send requests to the Try It feature. The provided URL is pre-pended to the URL of an actual request.
+- tryItCredentialPolicy - Use to fetch the credential policy for the Try It feature. Options are: omit (default), include, and same-origin.
+- layout - There are two layouts for Elements:
+  - sidebar - (default) Three-column design with a sidebar that can be resized.
+  - stacked - Everything in a single column, making integrations with existing websites that have their own sidebar or other columns already.
+- logo - URL to an image that displays as a small square logo next to the title, above the table of contents.
+- router - Determines how navigation should work:
+  - hash - uses the hash portion of the URL to keep the UI in sync with the URL.
+  - memory - keeps the history of your "URL" in memory (doesn't read or write to the address bar).
