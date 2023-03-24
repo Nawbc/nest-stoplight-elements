@@ -23,9 +23,6 @@ async function bootstrap() {
 
   await StoplightElementsModule.setup('/docs', app, doc, {
     logo: 'https://user-images.githubusercontent.com/45007226/220814748-96ec88ec-673d-4d38-abae-dce7d7c6695f.png',
-    auth(req) {
-      return req['Authorization'];
-    },
   });
 
   app.listen(3000);
