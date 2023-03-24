@@ -1,6 +1,6 @@
 {
   "name": "@letscollab/nest-stoplight-elements",
-  "version": "0.0.1-alpha.4",
+  "version": "0.0.1-alpha.5",
   "description": "Stoplight elements for Nestjs",
   "author": "Han",
   "license": "Apache-2.0",
